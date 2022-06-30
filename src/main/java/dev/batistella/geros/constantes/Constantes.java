@@ -29,7 +29,7 @@ public abstract class Constantes {
     public static final String LOGIN_EMPRESA_FK = "EMPRESA_ID";
     public static final String LOGIN_USUARIO_FK = "USUARIO_ID";
 
-    public static final String TABELA_CLIENTE = "CLIENTE";
+    public static final String TABELA_CLIENTE = "CLIENTES";
     public static final String CLIENTE_EMAIL = "EMAIL";
     public static final String CLIENTE_TELEFONE = "TELEFONE";
     public static final String CLIENTE_CPF_CNPJ = "CPF_CNPJ";

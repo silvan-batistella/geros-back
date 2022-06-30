@@ -21,6 +21,4 @@ public class RegistroDTO extends Validavel {
 
     @JsonIgnore
     private List<ErroDTO> erros;
-
-    private String mensagemResposta;
 }

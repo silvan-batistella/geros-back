@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.google.gson.Gson;
 import dev.batistella.geros.entidade.Login;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,14 @@ public class TokenService {
 	public Integer getTokenId(String token) {
 
 		Claims body = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-		return Integer.valueOf(body.getSubject());
+
+
+		JSONObject obj = new JSONObject(body.getSubject());
+		if (obj.has("id")) {
+
+			return obj.optInt("id");
+		}
+		return 0;
 	}
 
 }

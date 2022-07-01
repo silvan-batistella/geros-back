@@ -27,6 +27,26 @@ public abstract class Validavel {
         this.erros.add(ErroDTO.builder().mensagem(mensagem).campo(campo).build());
     }
 
+    public void determinarMensagemResposta() {
+
+        StringBuilder sb;
+        sb = new StringBuilder();
+        if (this.getErros().isEmpty()) {
+
+            sb.append("Tudo certo ao criar Objeto.");
+        } else {
+            if (this.getErros().size() == 1) {
+
+                sb.append("Um problema para resolver antes de realizar o cadastro.");
+            } else {
+
+                sb.append("Alguns problemas para resolver antes de realizar o cadastro.");
+            }
+        }
+
+        this.setMensagemResposta(sb.toString());
+    }
+
     public void setMensagemResposta(String mensagem) {
 
         this.mensagemResposta = mensagem.trim();

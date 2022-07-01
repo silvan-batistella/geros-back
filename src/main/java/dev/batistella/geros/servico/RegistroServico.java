@@ -92,29 +92,9 @@ public class RegistroServico {
         }
 
         registro.setErros(erros);
-        registro.setMensagemResposta(determinarMensagemResposta(registro));
+        registro.determinarMensagemResposta();
 
         return  registro.getErros().isEmpty();
-    }
-
-    private String determinarMensagemResposta(RegistroDTO registro) {
-
-        StringBuilder sb;
-        sb = new StringBuilder();
-        if (registro.getErros().isEmpty()) {
-
-            sb.append("Tudo certo ao criar Empresa.");
-        } else {
-            if (registro.getErros().size() == 1) {
-
-                sb.append("Um problema para resolver antes de realizar o cadastro.");
-            } else {
-
-                sb.append("Alguns problemas para resolver antes de realizar o cadastro.");
-            }
-        }
-
-        return sb.toString();
     }
 
     private void validarEmpresa(EmpresaDTO empresa) {
@@ -184,7 +164,8 @@ public class RegistroServico {
             Login login = new Login(registro.getLogin(), empresa, usuario);
             login = this.loginServico.save(login);
 
-            return ResponseEntity.ok().body(RespostaDTO.builder()
+            return ResponseEntity.ok().body(
+                    RespostaDTO.builder()
                     .sucesso(true)
                     .objeto(login)
                     .erros(registro.getErros())

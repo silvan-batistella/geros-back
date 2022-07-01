@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class ClienteServico extends UsuarioLogadoController {
@@ -41,7 +42,6 @@ public class ClienteServico extends UsuarioLogadoController {
             }
         }
 
-
         return validarAposConferencia(cliente);
     }
 
@@ -60,29 +60,9 @@ public class ClienteServico extends UsuarioLogadoController {
         }
 
         cliente.setErros(erros);
-        cliente.setMensagemResposta(determinarMensagemResposta(cliente));
+        cliente.determinarMensagemResposta();
 
         return  cliente.getErros().isEmpty();
-    }
-
-    private String determinarMensagemResposta(ClienteDTO cliente) {
-
-        StringBuilder sb;
-        sb = new StringBuilder();
-        if (cliente.getErros().isEmpty()) {
-
-            sb.append("Tudo certo ao criar Empresa.");
-        } else {
-            if (cliente.getErros().size() == 1) {
-
-                sb.append("Um problema para resolver antes de realizar o cadastro.");
-            } else {
-
-                sb.append("Alguns problemas para resolver antes de realizar o cadastro.");
-            }
-        }
-
-        return sb.toString();
     }
 
     public Boolean existeClienteComCPFCNPJ(String cpfCnpj) {
@@ -94,15 +74,12 @@ public class ClienteServico extends UsuarioLogadoController {
 
         if (validarCliente(clientedto)) {
 
-            Cliente cliente = new Cliente(clientedto);
-
-            cliente = this.save(cliente);
-
-            return ResponseEntity.ok().body(RespostaDTO.builder()
+            return ResponseEntity.ok().body(
+                    RespostaDTO.builder()
                     .sucesso(true)
-                    .objeto(cliente)
                     .erros(clientedto.getErros())
-                    .mensagem(clientedto.getMensagemResposta()).build());
+                    .mensagem(clientedto.getMensagemResposta())
+                    .objeto(this.save(new Cliente(clientedto))).build());
 
         } else {
 
@@ -120,5 +97,10 @@ public class ClienteServico extends UsuarioLogadoController {
         cliente.setEmpresa(getEmpresaLogado());
 
         return  this.clienteRepo.save(cliente);
+    }
+
+    public Optional<Cliente> findById(int clienteId) {
+
+        return this.clienteRepo.findByIdAndEmpresa(clienteId, getEmpresaLogado());
     }
 }

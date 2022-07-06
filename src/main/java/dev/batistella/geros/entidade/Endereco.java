@@ -5,8 +5,12 @@ import dev.batistella.geros.dto.cadastro.EnderecoDTO;
 import dev.batistella.geros.interfaces.IRespondivel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+
+import java.sql.Timestamp;
 
 import static dev.batistella.geros.constantes.Constantes.*;
 
@@ -25,6 +29,16 @@ public class Endereco implements IRespondivel {
     @JsonIgnore
     @JoinColumn(name = ENDERECO_EMPRESA_FK, nullable = false)
     private Empresa empresa;
+
+    @JsonIgnore
+    @CreationTimestamp
+    @Column(name = DATA_CRIACAO, nullable = false, updatable = false)
+    private Timestamp dataCriacao;
+
+    @JsonIgnore
+    @UpdateTimestamp
+    @Column(name = DATA_ATUALIZACAO, nullable = false)
+    private Timestamp dataAtualizacao;
 
     @ManyToOne
     @JsonIgnore
@@ -61,5 +75,4 @@ public class Endereco implements IRespondivel {
         this.setComplemento(endereco.getComplemento());
         this.setInfosComplementares(endereco.getInfoAdicional());
     }
-
 }

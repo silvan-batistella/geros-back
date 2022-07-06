@@ -1,5 +1,6 @@
 package dev.batistella.geros.entidade;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Set;
 
@@ -8,6 +9,8 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.batistella.geros.dto.generico.LoginDTO;
 import dev.batistella.geros.interfaces.IRespondivel;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,6 +33,16 @@ public class Login implements UserDetails, IRespondivel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = ID, nullable = false, updatable = false)
 	private Integer id;
+
+	@JsonIgnore
+	@CreationTimestamp
+	@Column(name = DATA_CRIACAO, nullable = false, updatable = false)
+	private Timestamp dataCriacao;
+
+	@JsonIgnore
+	@UpdateTimestamp
+	@Column(name = DATA_ATUALIZACAO, nullable = false)
+	private Timestamp dataAtualizacao;
 
 	@Column(name = LOGIN_EMAIL, nullable = false, unique = true)
 	private String email;
@@ -93,5 +106,4 @@ public class Login implements UserDetails, IRespondivel {
 	public boolean isEnabled() {
 		return true;
 	}
-
 }

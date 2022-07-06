@@ -138,6 +138,16 @@ public class RegistroServico {
                 login.addErro("Senha deve possuir ao menos 8 Caractéres.", "login_senha");
             }
         }
+
+        if (!this.validaExistenciaEmailLogin(login.getEmail())) {
+
+            login.addErro("E-mail já em uso no Sistema!", "login_email");
+        }
+    }
+
+    private boolean validaExistenciaEmailLogin(String email) {
+
+        return this.loginServico.findByEmail(email.toLowerCase()).isEmpty();
     }
 
     private void validarUsuario(UsuarioDTO usuario) {

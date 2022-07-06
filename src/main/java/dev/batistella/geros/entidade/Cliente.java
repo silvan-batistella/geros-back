@@ -52,7 +52,7 @@ public class Cliente implements IRespondivel {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = CLIENTE_EMPRESA_FK, nullable = false)
+    @JoinColumn(name = EMPRESA_FK, nullable = false)
     private Empresa empresa;
 
     @Enumerated(EnumType.STRING)

@@ -52,11 +52,11 @@ public class Login implements UserDetails, IRespondivel {
 	private String senha;
 
 	@ManyToOne
-	@JoinColumn(name = LOGIN_EMPRESA_FK, nullable = false)
+	@JoinColumn(name = EMPRESA_FK, nullable = false)
 	private Empresa empresa;
 
 	@OneToOne
-	@JoinColumn(name = LOGIN_USUARIO_FK, referencedColumnName = ID)
+	@JoinColumn(name = USUARIO_FK, referencedColumnName = ID)
 	private Usuario usuario;
 
 	@JsonIgnore

@@ -42,7 +42,7 @@ public class Usuario {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = USUARIO_EMPRESA_FK, nullable = false)
+    @JoinColumn(name = EMPRESA_FK, nullable = false)
     private Empresa empresa;
 
     @Column(name = USUARIO_CPF_CNPJ, nullable = false)

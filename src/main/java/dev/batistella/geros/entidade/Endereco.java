@@ -27,8 +27,18 @@ public class Endereco implements IRespondivel {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = ENDERECO_EMPRESA_FK, nullable = false)
+    @JoinColumn(name = EMPRESA_FK, nullable = false)
     private Empresa empresa;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = CLIENTE_FK, nullable = false)
+    private Cliente cliente;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = USUARIO_FK, nullable = false)
+    private Usuario usuario;
 
     @JsonIgnore
     @CreationTimestamp
@@ -39,11 +49,6 @@ public class Endereco implements IRespondivel {
     @UpdateTimestamp
     @Column(name = DATA_ATUALIZACAO, nullable = false)
     private Timestamp dataAtualizacao;
-
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = ENDERECO_CLIENTE_FK, nullable = false)
-    private Cliente cliente;
 
     @Column(name = ENDERECO_CEP, nullable = false)
     private String cep;

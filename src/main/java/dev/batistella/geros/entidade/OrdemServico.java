@@ -1,7 +1,9 @@
 package dev.batistella.geros.entidade;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.batistella.geros.dto.cadastro.OrdemServicoCriacaoDTO;
 import dev.batistella.geros.enumerador.EstadoOrdemServico;
+import dev.batistella.geros.interfaces.IRespondivel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +19,7 @@ import static dev.batistella.geros.constantes.Constantes.*;
 @Entity
 @NoArgsConstructor
 @Table(name = TABELA_ORDEM_SERVICO)
-public class OrdemServico {
+public class OrdemServico implements IRespondivel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,4 +64,12 @@ public class OrdemServico {
 
     @Column(name = ORDEM_SERVICO_VALOR_CONTRATADO, nullable = false, columnDefinition = "FLOAT DEFAULT 0")
     private double valorContratado;
+
+    public OrdemServico(OrdemServicoCriacaoDTO ordemServicoDto) {
+
+        this.setEstado(EstadoOrdemServico.INCLUIDO);
+        this.setUsuario(ordemServicoDto.getUsuario());
+        this.setCliente(ordemServicoDto.getCliente());
+        this.setEmpresa(ordemServicoDto.getEmpresa());
+    }
 }

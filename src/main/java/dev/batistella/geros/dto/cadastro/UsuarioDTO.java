@@ -17,5 +17,4 @@ public class UsuarioDTO extends Validavel {
 
         return Objects.requireNonNull(this.cpfCnpj).replaceAll("[^0-9]", "");
     }
-
 }

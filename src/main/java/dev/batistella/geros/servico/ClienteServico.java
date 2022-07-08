@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,6 +21,9 @@ import java.util.Optional;
 
 @Service
 public class ClienteServico extends UsuarioLogadoController {
+
+    @Autowired
+    EntityManager entityManager;
 
     @Autowired
     ClienteRepositorio clienteRepo;
@@ -104,5 +108,11 @@ public class ClienteServico extends UsuarioLogadoController {
     public Optional<Cliente> findById(int clienteId) {
 
         return this.clienteRepo.findByIdAndEmpresa(clienteId, getEmpresaLogado());
+    }
+
+    @Transactional
+    public Cliente sincronizar(Cliente cliente) {
+
+        return this.entityManager.merge(cliente);
     }
 }

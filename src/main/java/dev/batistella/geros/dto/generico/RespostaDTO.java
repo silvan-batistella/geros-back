@@ -32,6 +32,4 @@ public class RespostaDTO {
             this.erros = new ArrayList<>();
         }
     }
-
-
 }

@@ -20,6 +20,7 @@ public abstract class Constantes {
     public static final String ENDPOINT_ENDERECO = "/endereco";
     public static final String ENDPOINT_REGISTRO = "/registro";
     public static final String ENDPOINT_AUTENTICACAO = "/autentica";
+    public static final String ENDPOINT_ORDEM_SERVICO = "/ordem-servico";
 
     // ENTIDADES
     public static final String TABELA_EMPRESA = "EMPRESAS";

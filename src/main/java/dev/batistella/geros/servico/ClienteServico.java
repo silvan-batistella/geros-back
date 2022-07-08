@@ -10,6 +10,8 @@ import io.micrometer.core.instrument.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +64,7 @@ public class ClienteServico extends UsuarioLogadoController {
         cliente.setErros(erros);
         cliente.determinarMensagemResposta();
 
-        return  cliente.getErros().isEmpty();
+        return CollectionUtils.isEmpty(cliente.getErros());
     }
 
     public Boolean existeClienteComCPFCNPJ(String cpfCnpj) {
@@ -93,7 +95,7 @@ public class ClienteServico extends UsuarioLogadoController {
 
     private Cliente save(Cliente cliente) {
 
-        cliente.setCpfCnpj(cliente.getCpfCnpj().replaceAll("[^0-9]",""));
+        cliente.setCpfCnpj(cliente.getCpfCnpj().replaceAll("\\D",""));
         cliente.setEmpresa(getEmpresaLogado());
 
         return  this.clienteRepo.save(cliente);

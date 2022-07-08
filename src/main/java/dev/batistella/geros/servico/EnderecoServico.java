@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +106,6 @@ public class EnderecoServico extends UsuarioLogadoController {
         enderecoDTO.setErros(erros);
         enderecoDTO.determinarMensagemResposta();
 
-        return  enderecoDTO.getErros().isEmpty();
+        return CollectionUtils.isEmpty(enderecoDTO.getErros());
     }
 }

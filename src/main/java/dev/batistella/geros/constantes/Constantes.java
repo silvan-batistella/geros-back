@@ -20,6 +20,7 @@ public abstract class Constantes {
     public static final String ENDPOINT_ENDERECO = "/endereco";
     public static final String ENDPOINT_REGISTRO = "/registro";
     public static final String ENDPOINT_AUTENTICACAO = "/autentica";
+    public static final String ENDPOINT_EQUIPAMENTO = "/equipamento";
     public static final String ENDPOINT_ORDEM_SERVICO = "/ordem-servico";
 
     // ENTIDADES
@@ -53,5 +54,14 @@ public abstract class Constantes {
     public static final String ORDEM_SERVICO_VALOR_ORCADO = "VALOR_ORCADO";
     public static final String ORDEM_SERVICO_VALOR_QUITADO = "VALOR_QUITADO";
     public static final String ORDEM_SERVICO_VALOR_CONTRATADO = "VALOR_CONTRATADO";
+
+    public static final String TABELA_EQUIPAMENTO = "EQUIPAMENTO";
+
+    public static final String EQUIPAMENTO_OBS = "OBS";
+    public static final String EQUIPAMENTO_MARCA = "MARCA";
+
+    public static final String EQUIPAMENTO_MODELO = "MODELO";
+
+    public static final String EQUIPAMENTO_NUMERO_SERIE = "NUMERO_SERIE";
 
 }

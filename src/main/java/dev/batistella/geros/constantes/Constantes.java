@@ -59,9 +59,7 @@ public abstract class Constantes {
 
     public static final String EQUIPAMENTO_OBS = "OBS";
     public static final String EQUIPAMENTO_MARCA = "MARCA";
-
     public static final String EQUIPAMENTO_MODELO = "MODELO";
-
     public static final String EQUIPAMENTO_NUMERO_SERIE = "NUMERO_SERIE";
 
 }

@@ -85,7 +85,7 @@ public class EnderecoServico extends UsuarioLogadoController {
 
         if (Objects.isNull(enderecoDTO)) {
 
-            erros.add(ErroDTO.builder().mensagem("Objeto Cliente não reconhecido").campo("Endereço").build());
+            erros.add(ErroDTO.builder().mensagem("Objeto Endereco não reconhecido").campo("Endereço").build());
         }
 
         if (Objects.nonNull(enderecoDTO.getErros())) {
